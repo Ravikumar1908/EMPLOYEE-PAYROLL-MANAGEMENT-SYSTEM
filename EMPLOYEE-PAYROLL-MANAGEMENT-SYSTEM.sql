@@ -6,7 +6,7 @@
 
 
 
--- 2. Create Tables
+--  Create Tables
 CREATE TABLE departments (
     dept_id NUMBER PRIMARY KEY,
     dept_name VARCHAR2(50) NOT NULL UNIQUE
@@ -36,11 +36,11 @@ CREATE TABLE salary_details (
     CONSTRAINT uq_emp_month UNIQUE (emp_id, month_year)
 );
 
--- 3. Sequences
+--  Sequences
 CREATE SEQUENCE seq_emp START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE seq_sal START WITH 1 INCREMENT BY 1 NOCACHE;
 
--- 4. Package Specification
+--  Package Specification
 CREATE OR REPLACE PACKAGE payroll_pkg AS
     -- Function to calculate tax amount
     FUNCTION fn_calc_tax(p_gross NUMBER, p_tax_percent NUMBER) RETURN NUMBER;
@@ -69,7 +69,7 @@ CREATE OR REPLACE PACKAGE payroll_pkg AS
 END payroll_pkg;
 /
 
--- 5. Package Body
+--  Package Body
 CREATE OR REPLACE PACKAGE BODY payroll_pkg AS
 
     -- Function: Calculate Tax
@@ -138,7 +138,7 @@ CREATE OR REPLACE PACKAGE BODY payroll_pkg AS
 END payroll_pkg;
 /
 
--- 6. Trigger: Audit salary changes
+--  Trigger: Audit salary changes
 CREATE OR REPLACE TRIGGER trg_audit_salary
 AFTER UPDATE OF basic_salary, hra_percent, bonus_percent, tax_percent ON employees
 FOR EACH ROW
@@ -224,4 +224,5 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('All features demonstrated successfully.');
     DBMS_OUTPUT.PUT_LINE('========================================');
 END;
+
 /
